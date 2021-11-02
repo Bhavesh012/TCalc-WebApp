@@ -79,17 +79,36 @@ with st.expander("About"):
 ''' Let's start! '''
 
 # with st.sidebar:
-''' Enter the details of the telescope whose details you want to know.'''
+# ''' Enter the details of the telescope whose details you want to know.'''
 
-Dia_o = st.number_input('Telescope Aperture Size (in mm)', value=203.2, step=0.1)
-fl_o = st.number_input('Focal Length of Objective (in mm)', value=2032, step=1)
-user_age = st.number_input('User Age (optional)', value=22, step=1, format='%d')
+# Dia_o = st.number_input('Telescope Aperture Size (in mm)', value=203.2, step=0.1)
+# fl_o = st.number_input('Focal Length of Objective (in mm)', value=2032, step=1)
+# user_age = st.number_input('User Age (optional)', value=22, step=1, format='%d')
 
 # fl_e = st.number_input('Focal Length of Eyepiece (in mm)', value=25, step=1)
 # FOV_e = st.number_input('FOV of Eyepiece', value=50, step=0.1)
 
-'''Selected Inputs:'''
+# '''Selected Inputs:'''
 
+col1, col2 = st.columns([2,1])
+
+with col1:
+    st.subheader("Enter the details of the telescope whose details you want to know.")
+    Dia_o = st.number_input('Telescope Aperture Size (in mm)', value=203.2, step=0.1)
+    fl_o = st.number_input('Focal Length of Objective (in mm)', value=2032, step=1)
+    user_age = st.number_input('User Age (optional)', value=22, step=1, format='%d')
+    
+with col2:
+    st.subheader("Selected Inputs:")
+    st.write('Diameter of Objective:', Dia_o , 'mm')
+    st.write('Focal Length of Objective', fl_o , 'mm')
+    st.write("User's Age", user_age , 'yrs')
+# with col3:
+    # st.subheader("A narrow column with the data")
+
+# st.write('Diameter of Objective:', Dia_o , 'mm')
+# st.write('Focal Length of Objective', fl_o , 'mm')
+# st.write("User's Age", user_age , 'yrs')
 # '''
 # |Param|Value|Unit|
 # |-----|-----|----|
@@ -120,26 +139,11 @@ barlow = barlow_lens(2)     # defining barlow lens of 2x
 ota.add_optic(reducer,'reducer 1', select=False) # adding reducer to the telescope
 ota.add_optic(barlow,'barlow 1', select=False)    # adding barlow to the telescope
 
-# col1, col2, col3 = st.columns(3)
 
-# with col1:
-#     # st.subheader("A wide column with a chart")
-#     st.write('Diameter of Objective:', Dia_o , 'mm')
-#     st.write('Focal Length of Objective', fl_o , 'mm')
-#     st.write("User's Age", user_age , 'yrs')
-# with col2:
-#     # st.subheader("A narrow column with the data")
-#     st.write()
-# with col3:
-#     # st.subheader("A narrow column with the data")
-
-st.write('Diameter of Objective:', Dia_o , 'mm')
-st.write('Focal Length of Objective', fl_o , 'mm')
-st.write("User's Age", user_age , 'yrs')
 
 # listing all the added eyepieces in a table format
 # if st.button('List Eyepiece'):
-with st.expander("Output", expanded = True):
+with st.expander("List of Eyepiece and other optics", expanded = True):
     with st_stdout("code"), st_stderr("code"):
         ota.list_eyepiece()
 
