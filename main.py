@@ -43,7 +43,6 @@ st.sidebar.info(
     "[pull requests](https://github.com/Bhavesh012/TCalc-WebApp/pulls) "
     "to the [source code](https://github.com/Bhavesh012/TCalc-WebApp). "
 )
-
 st.sidebar.title("About")
 st.sidebar.info(
     """
